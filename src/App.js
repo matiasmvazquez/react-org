@@ -4,19 +4,19 @@ import Header from './components/Header/Header';
 import Formulario from './components/Formulario/Formulario';
 import MiOrg from './components/MiOrg';
 import Equipo from './components/Equipo';
+import Footer from './components/Footer';
 
 
 function App() {
   const [mostrarFormulario, actualizarMostrar] = useState(false)
+  const [colaboradores, actualizarColaboradores ] = useState([
+    {equipo: "Front End",
+    foto: "https://github.com/matiasmvazquez.png",
+    nombre: "Matias Vazquez",
+    puesto: "Programador"}
+  ])
 
-  //Ternario --> condicion ? seMuestra : noSeMuestra
-
-  const cambiarMostrar = () => {
-    actualizarMostrar(!mostrarFormulario)
-  }
-
-  //Lista de equipos
-  const equipos = [
+  const [equipos, actualizarEquipos] = useState([
     {
       titulo: "Programación",
       colorPrimario: "#57C278",
@@ -52,17 +52,63 @@ function App() {
       colorPrimario: "#FF8A29",
       colorSecundario: "#FFEEDF"
     }
-  ]
+  ])
+
+  //Ternario --> condicion ? seMuestra : noSeMuestra
+
+  const cambiarMostrar = () => {
+    actualizarMostrar(!mostrarFormulario)
+  }
+
+  //Registrar colaborador
+  const registrarColaborador = (colaborador) => {
+    console.log("Nuevo colaborador: ", colaborador)
+    //Sperad operator
+    actualizarColaboradores([...colaboradores, colaborador])
+  }
+
+  //Eliminar colaborador
+  const eliminarColaborador = () => {
+    console.log("Eliminar coloborador")
+  }
+
+  //Actualizar color de equipo
+  const actualizarColor = (color, titulo) => {
+    console.log("Actualizar: ", color, titulo)
+    const equiposActualizados = equipos.map((equipo) => {
+      if(equipo.titulo == titulo){
+        equipo.colorPrimario = color
+      }
+      return equipo
+  })
+
+  actualizarEquipos(equiposActualizados)
+  }
 
   return (
     <div>
       <Header />
       {/* { mostrarFormulario === true ? <Formulario /> : <></>} */}
-      { mostrarFormulario && <Formulario equipos={equipos.map((equipo) => equipo.titulo)} /> }
+      { 
+        mostrarFormulario && <Formulario
+          equipos={equipos.map((equipo) => equipo.titulo)}
+          registrarColaborador={registrarColaborador}
+        />
+      }
       <MiOrg cambiarMostrar={cambiarMostrar} />
       {
-        equipos.map( (equipo) => <Equipo datos={equipo} key={equipo.titulo} />)
+        equipos.map( (equipo) => <Equipo
+          datos={equipo}
+          key={equipo.titulo}
+          colaboradores={colaboradores.filter( colaborador => colaborador.equipo === equipo.titulo )}
+          eliminarColaborador={eliminarColaborador}
+          actualizarColor={actualizarColor}
+          />
+        )
       }
+
+      <Footer />
+
     </div>
   );
 }
