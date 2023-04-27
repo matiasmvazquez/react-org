@@ -8,7 +8,7 @@ import Equipo from './components/Equipo';
 import Footer from './components/Footer';
 
 function App() {
-  const [mostrarFormulario, actualizarMostrar] = useState(false)
+  const [mostrarFormulario, actualizarMostrar] = useState(true)
   const [colaboradores, actualizarColaboradores ] = useState([
     {
       id: uuid(),
@@ -97,6 +97,12 @@ function App() {
   actualizarEquipos(equiposActualizados)
   }
 
+  //Crear equipo
+  const crearEquipo = (nuevoEquipo) => {
+    console.log(nuevoEquipo)
+    actualizarEquipos([...equipos, { ...nuevoEquipo, id: uuid() }])
+  }
+
   return (
     <div>
       <Header />
@@ -105,6 +111,7 @@ function App() {
         mostrarFormulario && <Formulario
           equipos={equipos.map((equipo) => equipo.titulo)}
           registrarColaborador={registrarColaborador}
+          crearEquipo={crearEquipo}
         />
       }
       <MiOrg cambiarMostrar={cambiarMostrar} />
