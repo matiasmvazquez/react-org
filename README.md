@@ -9,4 +9,9 @@ Nombre, puesto, link de foto y se acomodarán automaticamente en la sección cor
 
 También se puede agregar secciones y cambiar los colores.
 
-![alt text](https://github.com/matiasvazquez/react-org/blob/main/src/public/img/screen-react-mi-organizacion.png?raw=true)
+Demo:
+https://react-mi-organizacion.vercel.app/
+
+<p align="center">
+  <img src="./public/img/screen-react-mi-organizacion.png" width="80%" />
+</p>
