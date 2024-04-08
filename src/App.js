@@ -29,7 +29,7 @@ function App() {
     {
       id: uuid(),
       equipo: "Programación",
-      foto: "https://github.com/genesysaluralatam.png",
+      foto: "https://github.com/genesysR-dev.png",
       nombre: "Genesys Rondón",
       puesto: "Desarrolladora de software e instructora",
       fav: false
